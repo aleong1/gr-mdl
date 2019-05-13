@@ -49,3 +49,7 @@ def run(filename):
     print symbols
     for command in commands:
         print command
+
+        
+    
+        
