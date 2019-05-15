@@ -98,12 +98,21 @@ def run(filename):
                 draw_polygons(polygons, screen, zbuffer, view, ambient, light, symbols, command['constants'])
             else:
                 draw_polygons(polygons, screen, zbuffer, view, ambient, light, symbols, reflect)
-    
+
             polygons = []
 
 
         elif command['op'] == "line":
 
+            add_edge( edges,
+                      float(command['args'][0]), float(command['args'][1]), float(command['args'][2]),
+                      float(command['args'][3]), float(command['args'][4]), float(command['args'][5]) )
+            matrix_mult( stack[-1], edges )
+            draw_lines(eges, screen, zbuffer, color)
+            edges = []
+
         elif command['op'] == "save":
+            save_extension(screen, command['args'][0] + ".png")
 
         elif command['op'] == "display":
+            display(screen)
